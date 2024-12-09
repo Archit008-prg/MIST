@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Platform</title>
+    <link rel="stylesheet" href="MIST.css">
+    <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/b29aecf7-1634-4f42-98cc-3d5bfe486990/webchat/v2.1/config.js"></script>
+</head>
+<body>
+    <audio controls autoplay id="audioPlayer">
+        <source src="hopeful-starry-sleep-melody-stocktune.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+
+    <header>
+        <h1>Welcome to the Mental Health Platform</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+                <li><a href="#recommendations">Recommendations</a></li>
+                <li><a href="#teleconsultation">Teleconsultation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Welcome to the Mental Health Platform</h2>
+            <p>Explore our platform to assess your mental health and get personalized recommendations.</p>
+        </section>
+
+        <section id="register">
+            <h2>Register for the Mental Health Platform</h2>
+            <form action="register_user.php" method="POST">
+                <label for="reg-username">Username:</label>
+                <input type="text" id="reg-username" name="username" required><br>
+                <label for="reg-email">Email:</label>
+                <input type="email" id="reg-email" name="email" required><br>
+                <label for="reg-password">Password:</label>
+                <input type="password" id="reg-password" name="password" required><br>
+                <input type="submit" value="Register">
+            </form>
+        </section>
+
+        <section id="login">
+            <h2>Login to the Mental Health Platform</h2>
+            <form action="login_user.php" method="POST">
+                <label for="login-username">Username:</label>
+                <input type="text" id="login-username" name="username" required><br>
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="password" required><br>
+                <input type="submit" value="Login">
+            </form>
+        </section>
+
+        <section id="profile">
+            <h2>Your Profile</h2>
+            <p>Username: JohnDoe</p>
+            <p>Email: johndoe@example.com</p>
+            <a href="#edit-profile">Edit Profile</a>
+        </section>
+
+        <section id="assessment">
+            <h2>M.I.N.I. Assessment</h2>
+            <form action="submit_assessment.php" method="POST">
+                <label>Question 1: Have you felt down, depressed, or hopeless in the last two weeks?</label><br>
+                <input type="radio" id="q1_yes" name="q1" value="yes">
+                <label for="q1_yes">Yes</label><br>
+                <input type="radio" id="q1_no" name="q1" value="no">
+                <label for="q1_no">No</label><br>
+                <!-- Add more questions as needed -->
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+
+        <section id="recommendations">
+            <h2>Your Personalized Recommendations</h2>
+            <form id="recommendationForm">
+                <label>1. How often do you feel stressed or anxious?</label><br>
+                <input type="radio" id="q1_a" name="q1" value="often"> Often<br>
+                <input type="radio" id="q1_b" name="q1" value="sometimes"> Sometimes<br>
+                <input type="radio" id="q1_c" name="q1" value="rarely"> Rarely<br><br>
+                <label>2. How well do you sleep at night?</label><br>
+                <input type="radio" id="q2_a" name="q2" value="poor"> Poorly<br>
+                <input type="radio" id="q2_b" name="q2" value="average"> Average<br>
+                <input type="radio" id="q2_c" name="q2" value="well"> Well<br><br>
+                <label>3. How often do you engage in physical exercise?</label><br>
+                <input type="radio" id="q3_a" name="q3" value="daily"> Daily<br>
+                <input type="radio" id="q3_b" name="q3" value="weekly"> Weekly<br>
+                <input type="radio" id="q3_c" name="q3" value="rarely"> Rarely<br><br>
+                <input type="button" value="Get Recommendations" onclick="getRecommendations()">
+            </form>
+            <h3>Your Recommendations:</h3>
+            <div id="recommendations-result"></div>
+        </section>
+
+        <section id="teleconsultation">
+            <h2>Schedule a Consultation</h2>
+            <form action="schedule_consultation.php" method="POST">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required><br>
+                <input type="submit" value="Schedule">
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mental Health Platform. All rights reserved.</p>
+    </footer>
+
+    <script src="js/recommendations.js"></script>
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+    
+        // Event listener for when the audio starts playing
+        audioPlayer.addEventListener('play', () => {
+            audioPlayer.style.transform = 'translateY(20px)'; // Move down
+        });
+    
+        // Event listener for when the audio is paused or ends
+        audioPlayer.addEventListener('pause', () => {
+            audioPlayer.style.transform = 'translateY(0)'; // Move back to original position
+        });
+    
+        // Event listener for mouse hover
+        audioPlayer.addEventListener('mouseenter', () => {
+            audioPlayer.style.transform = 'translateY(0)'; // Move back to original position on hover
+        });
+    
+        audioPlayer.addEventListener('mouseleave', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.style.transform = 'translateY(20px)'; // Move down if audio is paused
+            }
+        });
+    </script>
+<script>
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    // Event listener for when the audio starts playing
+    audioPlayer.addEventListener('play', () => {
+        audioPlayer.style.transform = 'translateY(20px)'; // Move down
+    });
+
+    // Event listener for when the audio is paused or ends
+    audioPlayer.addEventListener('pause', () => {
+        audioPlayer.style.transform = 'translateY(0)'; // Move back to original position
+    });
+
+    // Event listener for mouse hover
+    audioPlayer.addEventListener('mouseenter', () => {
+        audioPlayer.style.transform = 'translateY(0)'; // Move back to original position on hover
+    });
+
+    audioPlayer.addEventListener('mouseleave', () => {
+        if (audioPlayer.paused) {
+            audioPlayer.style.transform = 'translateY(20px)'; // Move down if audio is paused
+        }
+    });
+</script>
+    
+</body>
+</html>
