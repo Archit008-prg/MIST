@@ -1,0 +1,230 @@
+/* styles.css */
+
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f0f4f8;
+    --text-color: #333;
+    --background-color: #ffffff;
+    --accent-color: #6ab04c;
+    --error-color: #e74c3c;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav {
+    background-color: var(--secondary-color);
+    padding: 0.5rem;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 0.5rem;
+}
+
+nav ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+input[type="submit"],
+input[type="button"] {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: #5a9d3d;
+}
+
+/* Radio button styling and positioning */
+.radio-group {
+    margin-bottom: 1rem;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+input[type="radio"] {
+    margin-right: 0.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    outline: none;
+    transition: border 0.3s ease;
+    vertical-align: middle;
+}
+
+input[type="radio"]:checked {
+    border: 6px solid var(--primary-color);
+}
+
+input[type="radio"] + label {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* Add some space between questions in the assessment and recommendations sections */
+#assessment form > div,
+#recommendations form > div {
+    margin-bottom: 1.5rem;
+}
+
+/* Style for question text */
+.question-text {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+}
+
+/* Accessibility improvements */
+a:focus,
+input:focus,
+button:focus {
+    outline: 3px solid var(--accent-color);
+}
+
+/* Error styling */
+.error {
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
+
+#audioPlayer {
+    position: fixed; /* Fix the position */
+    bottom: 0;      /* Align to the bottom */
+    left: 0;        /* Align to the left */
+    width: 100%;    /* Make it span the entire width of the page */
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a background color */
+    border: 1px solid #ccc; /* Optional: Add a border */
+    padding: 10px; /* Optional: Add padding */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+    z-index: 1000; /* Ensure it appears above other elements */
+    transition: transform 0.3s ease; /* Transition for smooth movement */
+}
+
+/* When the audio is playing, move it down */
+#audioPlayer:playing {
+    transform: translateY(40px); /* Move down by 20px (adjust as needed) */
+}
+
+/* Move back up on hover */
+#audioPlayer:hover {
+    transform: translateY(0); /* Move back to original position */
+}
+
